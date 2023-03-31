@@ -8,9 +8,9 @@ Raw data will be released soon!
 
 ### Training
 
-'''
+```
 sh experiments/pliers/train.sh [GPU IDs] [number of GPU] [Port]
-'''
+```
 
 ### Synthesis and Evaluate
 
