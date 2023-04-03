@@ -20,7 +20,7 @@ from sklearn.neighbors import KDTree
 from pysdf import SDF
 import argparse
 
-from amano import ManoLayer as AManoLayer
+from core.utils.amano import ManoLayer as AManoLayer
 
 mano_layer = AManoLayer()
 
