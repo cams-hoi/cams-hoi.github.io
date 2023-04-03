@@ -3,16 +3,17 @@ import torch
 import trimesh
 import trimesh.proximity
 from scipy.spatial.transform import Rotation as R
-from amano import ManoLayer as AManoLayer
 import pickle
 from tqdm import tqdm
 from pysdf import SDF
 from sklearn.neighbors import KDTree
 
+from core.utils.amano import ManoLayer as AManoLayer
+
 mano_layer = AManoLayer(cuda = True)
 
-mano_parts_file = 'mano_parts.pkl'  # MANO part file of fingers
-mano_knuckles_file = 'mano_parts_1.pt' # MANO part file of knuckles
+mano_parts_file = 'data/preparation/mano_parts.pkl'  # MANO part file of fingers
+mano_knuckles_file = 'data/preparation/mano_parts_1.pt' # MANO part file of knuckles
 
 mano_layer = AManoLayer(cuda = True)
 
@@ -49,11 +50,11 @@ def FitContact(
     part_cnt = c_flag.shape[1]
     mano_output = mano_layer(pose[:, :3], pose[:, 3:])
     hand_verts = mano_output.verts - mano_output.joints[:, :1] + trans.unsqueeze(1)
-    
+
     opt_hand_idx = []
     opt_target = []
     opt_coef = []
-    
+
     def get_partial_mesh(obj_mesh, ref_frame, ref_normal):
         # Get the half mesh that align with the contact normal
         obj_vertex = torch.from_numpy(obj_mesh.vertices.copy()).cuda()
@@ -73,7 +74,7 @@ def FitContact(
         obj_sub_idx = torch.where(obj_adj_label == obj_adj_label[obj_part_idx[nn]])[0]
         kdt = KDTree(obj_vertex[obj_sub_idx].cpu())
         return obj_vertex[obj_sub_idx], obj_normal[obj_sub_idx], kdt
-    
+
     for part_i in range(part_cnt):
         obj_vertex = torch.from_numpy(objs[part_i].vertices.copy()).cuda()
         obj_normal = torch.from_numpy(objs[part_i].vertex_normals.copy()).cuda()
@@ -110,7 +111,7 @@ def FitContact(
                     target_norms = obj_part_norms[nn.squeeze()]
                     finger_part_pf = torch.from_numpy(finger_part_pf).cuda()
                     displace = finger_part_pf - target_verts
-                    if not c_type: # Non-contact: use whole mesh 
+                    if not c_type: # Non-contact: use whole mesh
                         inside = torch.from_numpy(obj_sdf[part_i].contains(finger_part_pf.detach().cpu().numpy())).cuda()
                         insiders = torch.where(inside == True)[0]
                         if (insiders.shape[0] < 1):
@@ -127,17 +128,17 @@ def FitContact(
                     target_verts_pf = torch.from_numpy(R.from_rotvec(obj_traj[stage_i, part_i, frame_i, 3:].cpu()).apply(target_verts.cpu())).cuda() + obj_traj[stage_i, part_i, frame_i, :3]
                     opt_target.append(target_verts_pf)
                     opt_coef.append(part_coef)
-    
+
     opt_hand_idx = torch.cat(opt_hand_idx, dim=0)
     opt_target = torch.cat(opt_target, dim=0)
     opt_coef = torch.cat(opt_coef, dim=0)
-    
-    
+
+
     # Optimization
     new_pose_t = pose[1:].clone().detach().requires_grad_(True)
     new_trans_t = trans[1:].clone().detach().requires_grad_(True)
     opt = torch.optim.Adam([new_trans_t, new_pose_t], lr=0.01)
-    
+
     for opt_step in range(500):
         opt.zero_grad()
         new_pose = torch.cat([pose[:1], new_pose_t], dim=0)
@@ -147,18 +148,18 @@ def FitContact(
         new_verts = mano_output.verts - mano_output.joints[:, 0:1, :] + new_trans.unsqueeze(1)
         new_joints = mano_output.joints - mano_output.joints[:, 0:1, :] + new_trans.unsqueeze(1)
         opt_verts = new_verts.reshape(-1, 3)[opt_hand_idx]
-        
+
         contact_loss = torch.sum(opt_coef * torch.sum(torch.square(opt_verts-opt_target), dim=1))
         trans_loss = torch.sum(torch.square(new_trans - init_trans))
-        
+
         joint_smooth1 = torch.sum(torch.square(new_joints[:-1] - new_joints[1:]))
         joint_smooth2 = torch.sum(torch.square(new_joints[:-2] - 2 * new_joints[1:-1] + new_joints[2:]))
-        
+
         loss = contact_loss * 80 + trans_loss + (joint_smooth1 * 5 + joint_smooth2 * 20) * smooth_coef
         loss.backward()
         opt.step()
-    
+
     new_pose = torch.cat([pose[:1], new_pose_t], dim=0)
     new_trans = torch.cat([trans[:1], new_trans_t], dim=0)
-    
+
     return new_trans.detach(), new_pose.detach()

@@ -3,9 +3,10 @@ import torch
 import trimesh
 import trimesh.proximity
 from scipy.spatial.transform import Rotation as R
-from amano import ManoLayer as AManoLayer
 import pickle
 from tqdm import tqdm
+
+from core.utils.amano import ManoLayer as AManoLayer
 
 mano_layer = AManoLayer(cuda = True)
 

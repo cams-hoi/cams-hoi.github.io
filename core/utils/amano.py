@@ -7,7 +7,7 @@ class ManoLayer(torch.nn.Module):
     def __init__(self,
         right_side = True,
         mano_shape = [-0.2958,  0.9205, -0.3387, -2.2807, -0.8466, -1.1710, -2.0076,  1.6172, -0.9288,  0.4104],
-        mano_assets_root='../data/mano_assets/mano/',
+        mano_assets_root='data/mano_assets/mano/',
         cuda = False
         ):
 
