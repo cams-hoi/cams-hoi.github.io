@@ -26,7 +26,7 @@ This is the dataset we use.
 
 ##### Optional: Details about generating ground truth CAMS Embedding
 
-If you open the meta file, eg. [pliers_meta.torch](https://drive.google.com/file/d/13unEc7dxC4ouX63m6h_rNiTQ_hm_qxWk/view?usp=share_link), you will find that every manipulation sequence consists of two keys: `data` and `cams`. Under the key `data`, you will find ground truth mocap data we copied from [HOI4D](https://github.com/leolyliu/HOI4D-Instructions), and the key `cams` reserves our generated ground truth CAMS Embedding. 
+If you open the meta file, eg. [pliers_meta.torch](https://drive.google.com/file/d/13unEc7dxC4ouX63m6h_rNiTQ_hm_qxWk/view?usp=share_link), you will find that every manipulation sequence consists of two keys: `data` and `cams`. Under the key `data`, you will find ground truth data we copied from [HOI4D](https://github.com/leolyliu/HOI4D-Instructions), and the key `cams` reserves our generated ground truth CAMS Embedding. 
 
 The following script is a demo about how we generate our own CAMS Embedding from mocap data. You can modify and generate your CAMS Embedding from other mocap data (which guarantees that you can find the right contact pairs by simply calculating the sdf between object and hand, otherwise you may need some predefined policies to get the right contact).
 ```
