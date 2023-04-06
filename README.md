@@ -11,7 +11,6 @@ Install PyTorch and most other packages we use are listed in [environment.yml](h
 #### MANO assets
 
 This is used for synthesizing and evaluation. Please follow these steps:
-
 1. Download the [mano_assets.zip](https://drive.google.com/file/d/1QfTv8lThfptlz22sC5bkVDoCD88-zfqy/view?usp=share_link)
 
 1. Place it under the folder `data/` and then it should be like `data/mano_assets`
@@ -22,6 +21,7 @@ This is the dataset we use.
 
 ##### How to use
 
+Please follow these steps:
 1. Download the meta file, eg. [pliers_meta.torch](https://drive.google.com/file/d/13unEc7dxC4ouX63m6h_rNiTQ_hm_qxWk/view?usp=share_link)
 
 1. Place it under the folder `data/meta` and then it should be like `data/meta/pliers_meta.torch`
