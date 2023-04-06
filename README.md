@@ -12,9 +12,9 @@ Install PyTorch and most other packages we use are listed in [environment.yml](h
 
 This is used for synthesizing and evaluation.
 
-Step1: Download the [mano_assets.zip](https://drive.google.com/file/d/1QfTv8lThfptlz22sC5bkVDoCD88-zfqy/view?usp=share_link)
+1. Download the [mano_assets.zip](https://drive.google.com/file/d/1QfTv8lThfptlz22sC5bkVDoCD88-zfqy/view?usp=share_link)
 
-Step2: Place it under the folder `data/` and then it should be like `data/mano_assets`
+1. Place it under the folder `data/` and then it should be like `data/mano_assets`
 
 #### HOI4D CAMS version
 
