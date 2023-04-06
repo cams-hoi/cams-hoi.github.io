@@ -10,7 +10,7 @@ Install PyTorch and most other packages we use are listed in [environment.yml](h
 
 #### MANO assets
 
-This is used for synthesizing and evaluation.
+This is used for synthesizing and evaluation. Please follow these steps:
 
 1. Download the [mano_assets.zip](https://drive.google.com/file/d/1QfTv8lThfptlz22sC5bkVDoCD88-zfqy/view?usp=share_link)
 
