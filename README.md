@@ -12,7 +12,6 @@ Install PyTorch and most other packages we use are listed in [environment.yml](h
 
 This is used for synthesizing and evaluation. Please follow these steps:
 1. Download the [mano_assets.zip](https://drive.google.com/file/d/1QfTv8lThfptlz22sC5bkVDoCD88-zfqy/view?usp=share_link)
-
 1. Place it under the folder `data/` and then it should be like `data/mano_assets`
 
 #### HOI4D CAMS version
@@ -21,11 +20,9 @@ This is the dataset we use.
 
 ##### How to use
 
-Please follow these steps:
 1. Download the meta file, eg. [pliers_meta.torch](https://drive.google.com/file/d/13unEc7dxC4ouX63m6h_rNiTQ_hm_qxWk/view?usp=share_link)
-
 1. Place it under the folder `data/meta` and then it should be like `data/meta/pliers_meta.torch`
-Optional: We also release several other categories including [scissors_meta.torch](https://drive.google.com/file/d/1daVbJDj3TfZpMlWLR50yGFL26ew0CH-y/view?usp=share_link) and [bucket_meta.torch](https://drive.google.com/file/d/1G1eTjnmTpI32noMJdboFDwFS1NxaQoMX/view?usp=share_link). You may edit the `data` attribute according to [experiments/pliers/config.yml](https://github.com/cams-hoi/cams-hoi.github.io/blob/master/experiments/pliers/config.yaml) to run our code on new category.
+1. Optional: We also release several other categories including [scissors_meta.torch](https://drive.google.com/file/d/1daVbJDj3TfZpMlWLR50yGFL26ew0CH-y/view?usp=share_link) and [bucket_meta.torch](https://drive.google.com/file/d/1G1eTjnmTpI32noMJdboFDwFS1NxaQoMX/view?usp=share_link). You may edit the `data` attribute according to [experiments/pliers/config.yml](https://github.com/cams-hoi/cams-hoi.github.io/blob/master/experiments/pliers/config.yaml) to run our code on new category.
 
 ##### Optional: Details about generating ground truth CAMS Embedding
 
