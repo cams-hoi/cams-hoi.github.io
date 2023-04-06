@@ -8,7 +8,32 @@ Install PyTorch and most other packages we use are listed in [environment.yml](h
 
 ### Data Preparation
 
-Raw data will be released soon!
+#### MANO assets
+
+This is used for synthesizing and evaluation.
+
+Step1: Download the [mano_assets.zip](https://drive.google.com/file/d/1QfTv8lThfptlz22sC5bkVDoCD88-zfqy/view?usp=share_link)
+Step2: Place it under the folder `data/` and then it should be like `data/mano_assets`
+
+#### HOI4D CAMS version
+
+This is the dataset we use.
+
+##### How to use
+
+Step1: Download the meta file, eg. [pliers_meta.torch](https://drive.google.com/file/d/13unEc7dxC4ouX63m6h_rNiTQ_hm_qxWk/view?usp=share_link)
+Step2: Place it under the folder `data/meta` and then it should be like `data/meta/pliers_meta.torch`
+Optional: We also release several other categories including [scissors_meta.torch](https://drive.google.com/file/d/1daVbJDj3TfZpMlWLR50yGFL26ew0CH-y/view?usp=share_link) and [bucket_meta.torch](https://drive.google.com/file/d/1G1eTjnmTpI32noMJdboFDwFS1NxaQoMX/view?usp=share_link). You may edit the `data` attribute according to [experiments/pliers/config.yml](https://github.com/cams-hoi/cams-hoi.github.io/blob/master/experiments/pliers/config.yaml) to run our code on new category.
+
+##### Optional: Details about generating ground truth CAMS Embedding
+
+If you open the meta file, eg. [pliers_meta.torch](https://drive.google.com/file/d/13unEc7dxC4ouX63m6h_rNiTQ_hm_qxWk/view?usp=share_link), you will find that every manipulation sequence consists of two keys: `data` and `cams`. Under the key `data`, you will find ground truth mocap data we copied from [HOI4D](https://github.com/leolyliu/HOI4D-Instructions), and the key `cams` reserves our generated ground truth CAMS Embedding. 
+
+The following script is a demo about how we generate our own CAMS Embedding from mocap data. You can modify and generate your CAMS Embedding from other mocap data (which guarantees that you can find the right contact pairs by simply calculating the sdf between object and hand, otherwise you may need some predefined policies to get the right contact).
+```
+cd data/preparation
+python -u gen_cams_meta_pliers.py 
+```
 
 ### Training Demo: Pliers
 
