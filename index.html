@@ -113,7 +113,7 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code (Coming Soon)</span>
+                  <span>Code</span>
                   </a>
               </span>
             </div>
@@ -154,13 +154,90 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">More Contents Coming Soon!</h2>
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content">
+          <p>
+            Our framework mainly consists of a <font color="green">CVAE-based planner module</font> and an <font color="chocolate">optimization-based synthesizer module</font>. Given the generation condition as the input, the planner first generates a <font color="sandybrown">per-stage CAMS representation</font> containing contact reference frames and sequences of finger embedding. Then the synthesizer optimizes the whole manipulation animation based on the CAMS embedding.
+          </p>
+          <div class="content has-text-centered">
+            <img src="./static/images/overview.png"></img>
+          </div>
+        </div>
+        <h4 class="title is-5" style="color:sandybrown">CAMS Representation of Hand Motion</h4>
+        <div class="content">
+          <p>
+            CAnonicalized Manipulation Spaces have a two-level canonicalization for manipulation representation. At the root level, the canonicalized contact targets (top right) describe the discrete contact information. At the leaf level, the canonicalized finger embedding (bottom right) transforms finger motion from global space into local reference frames defined on the contact targets.
+          </p>
+          <div class="content has-text-centered">
+            <img src="./static/images/demo.png" width=500px></img>
+          </div>
+        </div>
+        <h4 class="title is-5" style="color:green">CAMS-CVAE</h4>
+        <div class="content">
+          <p>
+            
+          </p>
+          <div class="content has-text-centered">
+            <img src="./static/images/arch.png"></img>
+          </div>
+        </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+    <!--/ Method. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Experiments. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Experiments</h2>
+        <div class="content">
+          <p>
+            Coming Soon
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Experiments. -->
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@article{zheng2023cams,
+  title={CAMS: CAnonicalized Manipulation Spaces for Category-Level Functional Hand-Object Manipulation Synthesis},
+  author={Zheng, Juntian and Zheng, Qingyuan and Fang, Lixing and Liu, Yun and Yi, Li},
+  journal={arXiv preprint arXiv:2303.15469},
+  year={2023}
+}</code></pre>
+    <p>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Contact. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Contact</h2>
+        <div class="content">
+          <p>
+            If you have any questions, please feel free to contact us:<br>
+            <b>Juntian Zheng</b>: <br>
+            <b>Lixing Fang</b>: <a href="mailto:flx20@mails.tsinghua.edu.cn">flx20@mails.tsinghua.edu.cn</a><br>
+            <b>Qingyuan Zheng</b>: <br>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Contact. -->
   </div>
 </section>
 
