@@ -145,6 +145,15 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
+          <video poster="" id="video" controls height="100%">
+            <source src="./static/videos/535bf934b50d9dfe2e2ed73c06c37315.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="content">
+          <p>
+            Old version video, contents may be outdated
+          </p>
         </div>
       </div>
     </div>
@@ -178,11 +187,17 @@
         <h4 class="title is-5" style="color:green">CAMS-CVAE</h4>
         <div class="content">
           <p>
-            
+            A CVAE-based motion planner module takes take configuration and object shape as inputs, and generates a CAMS sample of motion corresponding to the input.
           </p>
           <div class="content has-text-centered">
             <img src="./static/images/arch.png"></img>
           </div>
+        </div>
+        <h4 class="title is-5" style="color:chocolate">Optimization-based Synthesizer</h4>
+        <div class="content">
+          <p>
+            The synthesizer adopts a two-stage optimization method that first optimizes the MANO pose parameters to best fit the CAMS finger embedding and then optimizes the contact effect to improve physical plausibility.
+          </p>
         </div>
       </div>
     </div>
